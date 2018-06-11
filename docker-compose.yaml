@@ -1,0 +1,15 @@
+version: '2'
+volumes:
+   jdk-builder-volume:
+services:
+  app:
+    build:
+      context: app
+    expose:
+      - "50051"
+
+  envoy:
+    image: "envoyproxy/envoy:latest"
+    ports:
+      - "8080:80"
+    command: /usr/local/bin/envoy -c /etc/envoy.json --service-cluster clstr --service-node nd
