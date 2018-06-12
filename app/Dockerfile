@@ -1,7 +1,5 @@
 FROM openjdk:9-jdk
 
-COPY . /app
+COPY target/helloworld-0-SNAPSHOT-jar-with-dependencies.jar /var/app.jar
 
-WORKDIR /app
-
-CMD [ "/bin/bash", "-c", "java -jar /app/target/helloworld-0-SNAPSHOT-jar-with-dependencies" ]
+CMD [ "/bin/bash", "-c", "java -jar /var/app.jar" ]

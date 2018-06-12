@@ -12,4 +12,8 @@ services:
     image: "envoyproxy/envoy:latest"
     ports:
       - "8080:80"
-    command: /usr/local/bin/envoy -c /etc/envoy.json --service-cluster clstr --service-node nd
+      - "8081:8001"
+    command: /usr/local/bin/envoy -c /etc/envoy/config/envoy.json --service-cluster clstr --service-node nd
+    volumes:
+      - ./envoy/:/etc/envoy/config/:ro # /etc/envoy/config/envoy.json
+      - ./proto/:/etc/envoy/proto/:ro # /etc/envoy/proto/descriptor_set.pb
