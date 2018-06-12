@@ -20,18 +20,23 @@ option java_outer_classname = "HelloWorldProto";
 
 package helloworld;
 
-// The greeting service definition.
+import "google/api/annotations.proto";
+
 service Greeter {
-  // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+  rpc SayHi (HelloRequest) returns (HelloReply) {
+    // required to make Envoy JSON-transcoding
+    option (google.api.http) = {
+      post: "/helloworld.Greeter/SayHi" // or any other path, like "/hi"
+    };
+  }
 }
 
-// The request message containing the user's name.
 message HelloRequest {
   string name = 1;
 }
 
-// The response message containing the greetings
 message HelloReply {
   string message = 1;
 }

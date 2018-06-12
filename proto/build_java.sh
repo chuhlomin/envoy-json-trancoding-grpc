@@ -10,5 +10,5 @@ docker run --rm \
   -I. \
   helloworld.proto
 
-rm -r ../app/generated/src/main/java
-mv java ../app/generated/src/main/java
+rm -r ../app/generated-sources/src/main/java
+mv java ../app/generated-sources/src/main/java

@@ -7,4 +7,5 @@ docker run --rm \
   --include_imports \
   --include_source_info \
   -I. \
+  -I /protobuf/google/protobuf/ \
   helloworld.proto
