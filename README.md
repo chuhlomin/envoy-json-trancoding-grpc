@@ -53,3 +53,5 @@ curl --request POST \
   --header 'content-type: application/json' \
   --data '{"name":"John"}'
 ```
+
+Logs: https://gist.github.com/chuhlomin/710192f826bb33ee438c56bf3c1972a6
