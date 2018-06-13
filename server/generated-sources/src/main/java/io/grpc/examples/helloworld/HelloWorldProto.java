@@ -36,12 +36,14 @@ public final class HelloWorldProto {
       "\n\020helloworld.proto\022\nhelloworld\032\034google/a" +
       "pi/annotations.proto\"\034\n\014HelloRequest\022\014\n\004" +
       "name\030\001 \001(\t\"\035\n\nHelloReply\022\017\n\007message\030\001 \001(" +
-      "\t2\247\001\n\007Greeter\022>\n\010SayHello\022\030.helloworld.H" +
-      "elloRequest\032\026.helloworld.HelloReply\"\000\022\\\n" +
-      "\005SayHi\022\030.helloworld.HelloRequest\032\026.hello" +
-      "world.HelloReply\"!\202\323\344\223\002\033\"\031/helloworld.Gr" +
-      "eeter/SayHiB0\n\033io.grpc.examples.hellowor" +
-      "ldB\017HelloWorldProtoP\001b\006proto3"
+      "\t2\371\001\n\007Greeter\022>\n\010SayHello\022\030.helloworld.H" +
+      "elloRequest\032\026.helloworld.HelloReply\"\000\022P\n" +
+      "\nSayBonjour\022\030.helloworld.HelloRequest\032\026." +
+      "helloworld.HelloReply\"\020\202\323\344\223\002\n\"\010/bonjour\022" +
+      "\\\n\005SayHi\022\030.helloworld.HelloRequest\032\026.hel" +
+      "loworld.HelloReply\"!\202\323\344\223\002\033\"\031/helloworld." +
+      "Greeter/SayHiB0\n\033io.grpc.examples.hellow",
+      "orldB\017HelloWorldProtoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

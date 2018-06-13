@@ -58,7 +58,7 @@
         "name": "app",
         "connect_timeout_ms": 250,
         "type": "strict_dns",
-        "hosts": [{"url": "tcp://app:50051"}],
+        "hosts": [{"url": "tcp://server:50051"}],
         "lb_type": "round_robin",
         "features": "http2"
       }

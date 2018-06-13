@@ -25,10 +25,17 @@ import "google/api/annotations.proto";
 service Greeter {
   rpc SayHello (HelloRequest) returns (HelloReply) {}
 
-  rpc SayHi (HelloRequest) returns (HelloReply) {
-    // required to make Envoy JSON-transcoding
+  rpc SayBonjour (HelloRequest) returns (HelloReply) {
+    // required for Envoy JSON-transcoding
     option (google.api.http) = {
-      post: "/helloworld.Greeter/SayHi" // or any other path, like "/hi"
+      post: "/bonjour"
+    };
+  }
+
+  rpc SayHi (HelloRequest) returns (HelloReply) {
+    // required for Envoy JSON-transcoding
+    option (google.api.http) = {
+      post: "/helloworld.Greeter/SayHi" // breaks GRPC calls
     };
   }
 }

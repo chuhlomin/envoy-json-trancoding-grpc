@@ -17,19 +17,19 @@ cd proto; sh ./build_java.sh; cd ..
 3. Build app jar:
 
 ```bash
-cd app; sh ./build.sh; cd ..
+cd server; sh ./build.sh; cd ..
 ```
 
 4. Build app Docker image:
 
 ```bash
-docker-compose build app
+docker-compose build server
 ```
 
 5. Run app
 
 ```bash
-docker-compose up -d app
+docker-compose up -d server
 ```
 
 6. Run envoy
@@ -52,6 +52,42 @@ curl --request POST \
   --url http://localhost:8080/helloworld.Greeter/SayHello \
   --header 'content-type: application/json' \
   --data '{"name":"John"}'
+ 
+curl: (18) transfer closed with outstanding read data remaining
 ```
 
-Logs: https://gist.github.com/chuhlomin/710192f826bb33ee438c56bf3c1972a6
+```bash
+curl --request POST \
+  --url http://localhost:8080/bonjour \
+  --header 'content-type: application/json' \
+  --data '{"name":"John"}'
+ 
+{"message":"Bonjour John"}
+```
+
+```bash
+curl --request POST \
+  --url http://localhost:8080/helloworld.Greeter/SayHi \
+  --header 'content-type: application/json' \
+  --data '{"name":"John"}'
+ 
+{"message":"Hi John"}
+```
+
+9. Build GRPC client and run it:
+```bash
+cd client
+sh build.sh
+cd ../
+docker-compose build client
+docker-compose up client
+```
+
+##### Envoy responses summary:
+
+| | CURL response | GRPC response |
+|-|--------------------------|-----------|
+| *SayHello*<br>(no options) | curl: (18) transfer closed with outstanding read data remaining | `Hello John` |
+| *SayBonjour*<br>`post: "/bonjour"` | `{"message":"Bonjour John"}` | `Bonjour John` |
+| *SayHi*<br>`post: "/helloworld.Greeter/SayHi"` | `{"message":"Hi John"}` | io.grpc.StatusRuntimeException: INTERNAL: HTTP status code 400<br>invalid content-type: text/plain<br>headers: Metadata(:status=400,content-length=31,content-type=text/plain,date=Wed, 13 Jun 2018 19:15:32 GMT,server=envoy)<br>DATA-----------------------------<br>Expected a value.<br><br>John<br>^<bt>&#9;at io.grpc.stub.ClientCalls.toStatusRuntimeException(ClientCalls.java:221)<br>&#9;at io.grpc.stub.ClientCalls.getUnchecked(ClientCalls.java:202)<br>&#9;at io.grpc.stub.ClientCalls.blockingUnaryCall(ClientCalls.java:131)<br>&#9;at io.grpc.examples.helloworld.GreeterGrpc$GreeterBlockingStub.sayHi(GreeterGrpc.java:220)<br>&#9;at com.company.app.HelloWorldClient.main(HelloWorldClient.java:29) |
+

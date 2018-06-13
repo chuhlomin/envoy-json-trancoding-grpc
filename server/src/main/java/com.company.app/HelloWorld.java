@@ -51,15 +51,19 @@ public class HelloWorld {
     static class GreeterImpl extends GreeterGrpc.GreeterImplBase {
         @Override
         public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
-            HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + request.getName()).build();
-            responseObserver.onNext(reply);
+            responseObserver.onNext(HelloReply.newBuilder().setMessage("Hello " + request.getName()).build());
             responseObserver.onCompleted();
         }
 
         @Override
         public void sayHi(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
-            HelloReply reply = HelloReply.newBuilder().setMessage("Hi " + request.getName()).build();
-            responseObserver.onNext(reply);
+            responseObserver.onNext(HelloReply.newBuilder().setMessage("Hi " + request.getName()).build());
+            responseObserver.onCompleted();
+        }
+
+        @Override
+        public void sayBonjour(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
+            responseObserver.onNext(HelloReply.newBuilder().setMessage("Bonjour " + request.getName()).build());
             responseObserver.onCompleted();
         }
     }

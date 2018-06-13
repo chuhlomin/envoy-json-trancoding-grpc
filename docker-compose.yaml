@@ -2,11 +2,16 @@ version: '2'
 volumes:
    jdk-builder-volume:
 services:
-  app:
+  server:
     build:
-      context: app
+      context: server
     expose:
       - "50051"
+
+  client:
+    build:
+      context: client
+    links: [envoy]
 
   envoy:
     image: "envoyproxy/envoy:latest"
