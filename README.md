@@ -89,5 +89,5 @@ docker-compose up client
 |-|--------------------------|-----------|
 | *SayHello*<br>(no options) | curl: (18) transfer closed with outstanding read data remaining | `Hello John` |
 | *SayBonjour*<br>`post: "/bonjour"` | `{"message":"Bonjour John"}` | `Bonjour John` |
-| *SayHi*<br>`post: "/helloworld.Greeter/SayHi"` | `{"message":"Hi John"}` | io.grpc.StatusRuntimeException: INTERNAL: HTTP status code 400<br>invalid content-type: text/plain<br>headers: Metadata(:status=400,content-length=31,content-type=text/plain,date=Wed, 13 Jun 2018 19:15:32 GMT,server=envoy)<br>DATA-----------------------------<br>Expected a value.<br><br>John<br>^<bt>&#9;at io.grpc.stub.ClientCalls.toStatusRuntimeException(ClientCalls.java:221)<br>&#9;at io.grpc.stub.ClientCalls.getUnchecked(ClientCalls.java:202)<br>&#9;at io.grpc.stub.ClientCalls.blockingUnaryCall(ClientCalls.java:131)<br>&#9;at io.grpc.examples.helloworld.GreeterGrpc$GreeterBlockingStub.sayHi(GreeterGrpc.java:220)<br>&#9;at com.company.app.HelloWorldClient.main(HelloWorldClient.java:29) |
+| *SayHi*<br>`post: "/helloworld.Greeter/SayHi"` | `{"message":"Hi John"}` | `Hi John` |
 
